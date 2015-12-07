@@ -3,7 +3,7 @@
 	@ Autor: Emil Stefaniuk <emste@emste.eu>
 	@ [INPUT] Dzialanie matematyczne - elementy oddzielone spacjami
 	@ Przyklad dobrego wejscia: ( 2 + ( 2 * 2 ) )
-	@ [OUTPUT] Wynik dzia³ania
+	@ [OUTPUT] Wynik dzialania
 */
  
 #include <iostream>
@@ -33,23 +33,23 @@ int main()
 		bool good_syntax = false;
         
 		if(iteracja == 0 && word != "(" || iteracja == 0 && word==" "){
-            error = true;
-            break;
-        }
-        
+			error = true;
+			break;
+        	}
+	        
 		stringstream ss(word);
 		double i;
 		ss >> i;
-		
-		if(i > 0){ stosLiczb.push(i); good_syntax = true;}       
-        if(word == "("){ nawiasy++; good_syntax = true;}
-       
-		 if(word == ")"){
+			
+		if(i > 0){ stosLiczb.push(i); good_syntax = true; }       
+	        if(word == "("){ nawiasy++; good_syntax = true; }
+	       
+		if(word == ")"){
 			good_syntax = true;
 			if(stosLiczb.size() > 1){
-                double jeden = stosLiczb.top();
-                stosLiczb.pop();
-                double dwa = stosLiczb.top();
+                		double jeden = stosLiczb.top();
+                		stosLiczb.pop();
+                		double dwa = stosLiczb.top();
                 
 				string operatore;
 				operatore = stosOperatorow.top();
@@ -62,7 +62,7 @@ int main()
 				if(operatore == "/"){
 					if(jeden == 0){ error = true; }
 					else{ wynikdzialania = dwa / jeden; }
-                }
+                		}
 				
 				stosLiczb.top() = wynikdzialania;
 				nawiasy--;
@@ -76,8 +76,7 @@ int main()
 			stosOperatorow.push(*c);
 		}
        
-        if(!good_syntax) error = true;
-       
+        	if(!good_syntax) error = true;
 		iteracja++;
 	}
 	if(error || nawiasy) { cout << "Blad skladni"; }
